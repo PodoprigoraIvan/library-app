@@ -1,0 +1,136 @@
+html {
+    background-color: antiquewhite;
+    width: 100%;
+}
+h1 {
+    background: #009879;
+    border: 15px solid #006c57;
+    border-radius: 20px;
+    margin: auto;
+    padding: 20px 0;
+    width: 60vw;
+    text-align: center;
+    color:white;
+}
+
+button {
+    background: #474847;
+    border: 3px solid #2c2b38;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 3vh;
+    margin-right: 1vw;
+    text-align: center;
+    cursor: pointer;
+    color:white;
+}
+.toggled_button {
+    background: #12d028;
+}
+#menubuttons {
+    margin: auto;
+    margin-top: 1vh;
+    width: 60vw;
+    text-align: center;
+}
+dialog {
+    background: #5CCCB6;
+    border: 7px solid #000000;
+    border-radius: 20px;
+    margin: auto;
+    width: 50vw;
+    text-align: center;
+}
+
+button:hover{
+    background: #616261;
+}
+
+.toggled_button:hover{
+    background: #0c7c19;
+}
+
+.close_button{
+    position: absolute;
+    top: 2px;
+    right: 4px;
+}
+table{
+    margin: auto;
+    width: 60vw;
+}
+thead tr {
+    background-color: #009879;
+    color: #2c2222;
+    text-align: left;
+}
+th, td {
+    padding: 12px 15px;
+}
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+tbody tr:nth-of-type(odd) {
+    background-color: #e5e3e3;
+}
+tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.tr_tbody{
+    cursor:pointer;
+}
+.tr_tbody:hover{
+    background: #006b56;
+    border-radius: 3vh;
+    border:7px;
+    color:#dddddd;
+}
+thead tr th{
+    color:white;
+}
+
+label {
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+input {
+    background-color: #a2f6e5;
+    border: 3px solid black;
+    border-radius: 5px;
+    display: block;
+    margin: auto;
+    margin-bottom: 1vh;
+}
+.dialog_div {
+    position: relative;
+    margin: auto;
+    width:30vw;
+}
+form{
+    text-align: center;
+}
+
+#question {
+    display: block;
+}
+
+#confirm {
+    background-color: #a2f6e5;
+    width: 30vw;
+}
+
+#spanTakenby {
+    color:blue;
+    cursor: pointer;
+}
+#spanTakenby:hover {
+    color:rgb(42, 42, 173);
+}
+
+#readerTable {
+    width:40vw;
+}

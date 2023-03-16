@@ -1,0 +1,117 @@
+html
+  - var bookTable
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/public/style.css")
+    script(src="/public/index.js") 
+    script(src="https://kit.fontawesome.com/c50584688c.js" crossorigin="anonymous")
+    title library
+  body
+    h1 Домашняя библиотека
+    div#menubuttons
+      button(onClick="openAddDialog()") 
+        i.fa.fa-solid.fa-plus
+        a Добавить книгу
+      button(onClick="toggleInStockFilter(this)") 
+        i.fa.fa-solid.fa-filter
+        a В наличии
+      button(onClick="toggleExpiredDateFilter(this)") 
+        i.fa.fa-solid.fa-filter
+        a Возврат просрочен
+    table
+      thead
+        tr
+          th Автор
+          th Название
+          th Год выпуска
+          th В наличии
+          th Дата возврата
+      tbody#tablebody
+        each book in bookTable
+          tr(onClick="openInfo("+book.id+")", class="tr_tbody")
+            td= book.author
+            td= book.name
+            td= book.dateRelease
+            if book.inStock == true
+              td
+                i.fa.fa-solid.fa-check 
+            else
+              td 
+                i.fa.fa-solid.fa-xmark
+            td= book.dateReturn
+
+  dialog#add
+    h2 Добавление новой книги
+    form(action="/add", method="POST")
+      section
+        label(for='author_input') Автор
+        input#author_input(name='author' type='text' required) 
+      section
+        label(for='name_input') Название
+        input#name_input(name='name' type='text' required)
+      section
+        label(for='date_release_input') Год выпуска
+        input#date_release_input(name='dateRelease' type='number' required)
+      button(type='submit') Добавить!{' '}
+        i.fa.fa-solid.fa-plus
+    button(class='close_button',type="button", onClick="closeDialog(this)")
+      i.fa.fa-solid.fa-xmark
+
+  dialog#info
+    div(class='dialog_div')
+      h2 Информация о книге
+      form#editform(action="/edit/", method="POST")
+        section
+          label(for='author_edit') Автор
+          input#author_edit(name='author' type='text' required) 
+        section
+          label(for='name_edit') Название
+          input#name_edit(name='name' type='text' required)
+        section
+          label(for='date_release_edit') Год выпуска
+          input#date_release_edit(name='dateRelease' type='number' required)
+        button(type='submit') Изменить информацию о книге!{' '}
+          i.fa.fa-solid.fa-pen-to-square
+      div#ifBookInStock
+        form#takeform(action="/take/", method='POST')
+          section
+            label(for='name_taker') Ваше имя
+            input#name_taker(name='nameTaker', type='text' required)
+          section
+            label(for='date_return') Дата возврата
+            input#date_return(name='dateReturn', type='date' required)
+          button#takeButton(type='submit') Взять книгу!{' '}
+            i.fa.fa-solid.fa-arrow-up
+      div#ifBookNotInStock
+        p#booktaken Книга взята пользователем
+          span#spanTakenby 
+          span#spanReturnDate
+        button#returnButton(onClick="") Вернуть книгу!{' '}
+          i.fa.fa-solid.fa-arrow-down
+      button#deleteButton(onClick="openConfirmDialog()") Удалить книгу!{' '}
+        i.fa.fa-solid.fa-trash
+    button(class='close_button',type="button", onClick="closeDialog(this)")
+      i.fa.fa-solid.fa-xmark
+
+  dialog#readerList
+    h2 Список книг, взятых пользователем
+      span#takenBy
+    table#readerTable
+      thead
+        tr
+          th Автор
+          th Название
+          th Год выпуска
+          th Дата возврата
+      tbody#readerTableBody
+    button(class='close_button',type="button", onClick="closeDialog(this)")
+      i.fa.fa-solid.fa-xmark
+    
+  dialog#confirm 
+    a#question Вы уверены, что хотите удалить данную книгу?
+    button(class='close_button',type="button", onClick="closeDialog(this)")
+      i.fa.fa-solid.fa-xmark
+    button#confirmButton(class='confirm_button',type='button',onClick="") Да!{' '}
+    button(type='button', onClick="closeDialog(this)") Нет
